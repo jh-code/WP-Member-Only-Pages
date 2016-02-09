@@ -81,5 +81,11 @@ if( !class_exists( 'JH_MOP' ) ) {
 	}
 }
 
-global $jh_mop;
-$jh_mop = new JH_MOP();
+function init_jh_mop() {
+	new JH_MOP();
+}
+
+if( is_admin() ) {
+	add_action( 'load-post.php',     'init_jh_mop' );
+    add_action( 'load-post-new.php', 'init_jh_mop' );
+}
